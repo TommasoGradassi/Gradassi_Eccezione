@@ -5,21 +5,21 @@
 package gradassi_eccezioni;
 import java.util.Scanner;
 import java.io.BufferedReader;
-import java.io.IOError;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.InputStreamReader;
         /**
  *
- * @author B045_03
+ * @author Gradassi
  */
 public class Gradassi_Eccezioni {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    
+    public static void usingScanner(){
         Scanner in = new Scanner(System.in);
 		System.out.println("Digita un intero:");
 		
@@ -28,15 +28,43 @@ public class Gradassi_Eccezioni {
 	    
 		System.out.println("Valore: " + intValue);
 		in.close();
-
-        try {
-           BufferedReader inR= new BufferedReader(new InputStreamReader(System.in));
-
-            String lineR=inR.readLine();
-        } catch (IOException ex) {
-            Logger.getLogger(Gradassi_Eccezioni.class.getName()).log(Level.SEVERE, null, ex);
-        }
-	}
     }
+    public static void usingBufferedReader(){
+        BufferedReader inR= new BufferedReader(new InputStreamReader(System.in));
+        try{
+            int  lineR=inR.read();
+            System.out.println("Valore inserito con il buffered"+lineR);
+        }catch (IOException ex){
+            Logger.getLogger(Gradassi_Eccezioni.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Errore nella scrittura");
+        }
+        try{
+            inR.close();
+	}catch (IOException ex){
+            Logger.getLogger(UsingInputStream.class.getName()).log(Level.SEVERE,null,ex);
+            System.err.println("Errore in scrittura");
+            }
+        }
+    public static void TestEccezione(){
+        Scanner in = new Scanner(System.in);
+		System.out.println("Digita un intero:");
+		
+		String line = in.next();
+		
+		try {
+			int intValue = Integer.parseInt(line);
+	    	System.out.println("Valore: " + intValue);
+		} catch (NumberFormatException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		System.out.println("DOPO CATCH");
+		in.close();
+		
+	}
+
+    }
+ 
+   }
     
-}
+
